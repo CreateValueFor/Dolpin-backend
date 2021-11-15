@@ -10,30 +10,34 @@ router.get('/', function (req, res, next) {
 })
 
 /* GET users listing. */
-router.post('/', function (req, res, next) {
+router.post('/', async (req, res, next) => {
   // 회원가입을 진행한다.
-  onsole.log('test')
+  console.log('test')
+  console.log(req.body)
   // TODO: create an account API
   //const account = await wallet.createAccount()
-  console.log(account)
+  // console.log(req.body)
 
-  // TODO: save address, userid, password
+  // // TODO: save address, userid, password
   const user = new User({
-    name: req.body.username,
+    // 도큐먼트 생성
+    email: req.body.email,
     password: req.body.password,
-    address: account.address,
-    publickey: account.publicKey,
+    nickname: req.body.nickname,
+    //   //address: account.address,
+    //   //publickey: account.publicKey,
   })
-
+  console.log(user)
   // 받은 값을 mongoDB에 저장하게 된다.
-  /*user.save((err, doc) => {
+  user.save((err, doc) => {
     if (err) console.error(err)
     console.log(doc)
   })
   res.json({
-    address: account.address,
-  })*/
+    //address: account.address,
+    address: '123123',
+  })
 
-  res.send('respond with a resource')
+  //res.send('respond with a resource')
 })
 module.exports = router

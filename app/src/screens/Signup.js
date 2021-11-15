@@ -24,8 +24,7 @@ const Signup = ({ navigation }) => {
     //   .catch(function (error) {
     //     console.log(error)
     //
-    let tmp = await api.signup()
-    console.log('data:', tmp.data)
+    api.signup(email, password, nickname)
     return
   }
 

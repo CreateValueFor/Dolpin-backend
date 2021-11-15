@@ -1,17 +1,22 @@
-import axios from 'axios'
-
-import { LOCAL_BACKEND_URL } from '@env'
-let headers = {}
-
-const Instance = axios.create({
-  baseURL: LOCAL_BACKEND_URL,
-  timeout: 4000,
-  headers,
-})
+import Axios from './utils/CommonAxios'
 
 export default {
-  signup() {
-    console.log(LOCAL_BACKEND_URL)
-    return Instance.get('/users/', {})
+  signup(email, password, nickname) {
+    return Axios({
+      url: '/users',
+      method: 'post',
+      data: {
+        email: email,
+        password: password,
+        nickname: nickname,
+      },
+    })
+  },
+
+  getLastDeviceList() {
+    return Axios({
+      url: '/json/LastDeviceData.json',
+      method: 'GET',
+    })
   },
 }
